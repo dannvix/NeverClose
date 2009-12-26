@@ -9,6 +9,21 @@
       });
     }
   );
+  chrome.tabs.onCreated.addListener (
+    function (tabId) {
+      chrome.tabs.getAllInWindow (
+        tabId.windowId,
+        function(tabs) {
+          if (tabs.length < 3) return ;
+          for (var i = 0; i < tabs.length; i++) {
+            if (tabs[i].url == "about:blank") {
+              chrome.tabs.remove(tabs[i].id);
+            }
+          }
+        }
+      );
+    }
+  );
   chrome.tabs.onRemoved.addListener (
     function (tabId) {
       chrome.tabs.getAllInWindow (
