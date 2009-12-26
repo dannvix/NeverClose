@@ -1,0 +1,29 @@
+<html>
+<script type="text/javascript" charset="utf-8">
+  chrome.windows.onCreated.addListener (
+    function (win) {
+      chrome.tabs.create({
+        "windowId": win.id,
+        "url": "about:blank",
+        "selected": false
+      });
+    }
+  );
+  chrome.tabs.onRemoved.addListener (
+    function (tabId) {
+      chrome.tabs.getAllInWindow (
+        tabId.windowId,
+        function(tabs) {
+          if (tabs.length < 2) {
+            chrome.tabs.create({
+              "windowId": tabId.windowId,
+              "url": "about:blank",
+              "selected": false
+            });
+          }
+        }
+      );
+    }
+  );
+</script>
+</html>

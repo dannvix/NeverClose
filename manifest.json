@@ -1,0 +1,12 @@
+{
+  "name": "NeverClose",
+  "version": "1.0",
+  "description": "Prevent your Google Chrome from closing window when the last tab is closed",
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "background_page": "background.html",
+  "permissions": [
+    "tabs"
+  ]
+}
