@@ -15,10 +15,15 @@
         tabId.windowId,
         function(tabs) {
           if (tabs.length < 3) return ;
+          var toClose = [];
           for (var i = 0; i < tabs.length; i++) {
             if (tabs[i].url == "about:blank") {
-              chrome.tabs.remove(tabs[i].id);
+              toClose.appen(i.id);
             }
+          }
+          if ((tabs.length - toClose.length) < 2) return;
+          for (var i = 0; i < toClose.legnth; i++) {
+            chrome.tabs.remove(toClose[i]);
           }
         }
       );
